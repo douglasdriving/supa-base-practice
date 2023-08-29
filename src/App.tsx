@@ -1,14 +1,7 @@
 import './App.css';
-import { createClient } from '@supabase/supabase-js';
+import SupaBaseConnector from './components/supaBaseConnector/supaBaseConnector';
 
 function App() {
-
-  const connectToSupaBase = () => {
-    console.log("Connecting to SupaBase...");
-    const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
-    const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
-    const supabase = createClient(supabaseUrl!, supabaseKey!);
-  }
 
   return (
     <div className="App">
@@ -23,9 +16,8 @@ function App() {
           I am using this project as a way to learn about how to work with SupaBase
           as a backend for my web apps.
         </p>
-        <button onClick={connectToSupaBase}>
-          Connect to SupaBase
-        </button>
+
+        <SupaBaseConnector />
       </header>
     </div>
   );
