@@ -32,7 +32,7 @@ function SupaBaseConnector() {
         </button>
       }
 
-      {connected && <SupaBasePlayground supabase={supabase.supabase} connected={connected} />}
+      {connected && <SupaBasePlayground supabase={supabase} />}
 
     </>
   )

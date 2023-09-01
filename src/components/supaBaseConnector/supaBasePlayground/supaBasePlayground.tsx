@@ -1,37 +1,27 @@
+type SupaBasePlaygroundProps = {
+  supabase: any;
+};
 
-
-function SupaBasePlayground(supabase: any, connected: boolean) {
+const SupaBasePlayground: React.FC<SupaBasePlaygroundProps> = ({ supabase }) => {
 
   const printRows = async () => {
-
-    console.log(supabase);
-
-    console.log("Printing rows...");
-
-    if (!connected) {
-      console.error("Can't print rows. SupaBase is not connected");
-      return;
-    }
 
     let { data: my_table, error } = await supabase
       .from('my_table')
       .select('*')
 
-
     if (error) {
       console.error("Can't print rows. Error fetching data", error);
       return;
     }
-    else {
-      console.log("Rows:", my_table);
-    }
+
+    console.log("Rows:", my_table);
 
   }
 
   const addRow = async () => {
-    //generate a random string of 10 characters
-    const randomString = Math.random().toString(36).substring(2, 15);
 
+    const randomString = Math.random().toString(36).substring(2, 15); //random name
 
     const { data, error } = await supabase
       .from('my_table')
@@ -44,12 +34,10 @@ function SupaBasePlayground(supabase: any, connected: boolean) {
       console.error("Can't add row. Error fetching data", error);
       return;
     }
-    else {
-      console.log("Inserted row:", data);
-    }
+
+    console.log("Inserted row:", data);
 
   }
-
 
   return (
     <div>
@@ -62,6 +50,8 @@ function SupaBasePlayground(supabase: any, connected: boolean) {
       </button>
     </div>
   );
-}
+
+};
+
 
 export default SupaBasePlayground;
